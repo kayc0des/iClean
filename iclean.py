@@ -4,6 +4,7 @@ from functions import reg_success
 import functions
 import random
 from dbconn import registerUser
+from dbconn import checkUser
 
 print("iClean App")
 
@@ -46,5 +47,8 @@ else:
     user_email = input("Enter email: ")
     user_password = input("Enter password: ")
 
+    user_details = {'user_email': user_email, 'userpassword': user_password}
+
     #check if entry is present in database
+    checkUser(user_details['user_email'])
 
