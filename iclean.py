@@ -5,6 +5,7 @@ import functions
 import random
 from dbconn import registerUser
 from dbconn import checkUser
+import maskpass
 
 print("iClean App")
 
@@ -27,7 +28,7 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
         global username, user_email, user_password
         username = input("Enter your username: ")
         user_email = input("Enter email: ")
-        user_password = input("Enter password: ")
+        user_password = maskpass.askpass(prompt="Enter password:", mask="*")
         check(user_email)
 
     #collect user info, verify and insert into database
@@ -45,7 +46,7 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
 else:
     print("Please log in")
     user_email = input("Enter email: ")
-    user_password = input("Enter password: ")
+    user_password = maskpass.askpass(prompt="Enter password:", mask="*")
 
     user_details = {'user_email': user_email, 'userpassword': user_password}
 
