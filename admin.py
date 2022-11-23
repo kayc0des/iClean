@@ -4,7 +4,6 @@ import maskpass
 print("iClean Admin")
 
 admin_email = input("Enter admin Email: ")
-#admin_password = input("Enter admin password: ")
 admin_password = maskpass.askpass(prompt="Enter admin Password:", mask="*")
 
 email = 'icleanapp.py@gmail.com'
