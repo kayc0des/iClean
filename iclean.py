@@ -50,5 +50,5 @@ else:
     user_details = {'user_email': user_email, 'userpassword': user_password}
 
     #check if entry is present in database
-    checkUser(user_details['user_email'])
+    checkUser(user_details['user_email'], user_details['userpassword'])
 
