@@ -20,15 +20,15 @@ def registerUser(name, username, useremail, userpassword):
         if conn.is_connected():
             conn.close()
 
-def add_message(message):
+def add_message(message, admin_name):
     try:
         conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
-        admin_insert_query = """INSERT INTO MessageTable (Message) VALUES (%s) """
-        record = (message)
+        admin_insert_query = """INSERT INTO MessageTable (Message, adminName) VALUES (%s, %s) """
+        record = (message, admin_name)
         cursor = conn.cursor()
         cursor.execute(admin_insert_query, record)
         conn.commit() 
-        print("Succesful Registration")
+        print("Succesful Submission")
         cursor.close
     except Error as e:
         print("Sorry, we encountered an error", e)
