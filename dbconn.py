@@ -37,15 +37,18 @@ def add_message(message, admin_name):
             conn.close()
 
 
-def checkUser(useremail):
+def checkUser(useremail, userpassword):
     try:
         conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
-        search_query = """SELECT * FROM UserTable WHERE Useremail=%s"""
-        record = useremail
+        search_query = """SELECT * FROM UserTable WHERE UserEmail=%s AND UserPassword=%s"""
+        record = (useremail, userpassword)
         cursor = conn.cursor()
-        my_cursor = cursor.execute(search_query, record)
-        my_row = cursor.fetchall()
-        print(my_row[1])
+        cursor.execute(search_query, record)
+        result = cursor.fetchall()
+        if result == []:
+            print("Error: Credentials Not Found!")
+        else:
+            pass
 
     except Error as e:
         print("Sorry", e)
