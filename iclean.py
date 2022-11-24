@@ -6,6 +6,7 @@ import random
 from dbconn import registerUser
 from dbconn import checkUser
 import maskpass
+from dbconn import existingUser
 
 print("iClean App")
 
@@ -30,6 +31,9 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
         user_email = input("Enter email: ")
         user_password = maskpass.askpass(prompt="Enter password:", mask="*")
         check(user_email)
+        user_details = {'user_email': user_email, 'user_password': user_password}
+        existingUser(user_details['user_email'], user_details['user_password'])
+
 
     #collect user info, verify and insert into database
     user_info()
