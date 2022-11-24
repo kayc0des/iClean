@@ -9,6 +9,7 @@ import maskpass
 from dbconn import existingUser
 from dbconn import email_records
 from dbconn import fetch_message
+from functions import daily_message
 import schedule
 import time
 
@@ -71,6 +72,8 @@ email_rec = email_records()
 print(email_rec)
 message_rec = fetch_message()
 print(message_rec)
+
+daily_message(email_rec)
 
 #automate message to be sent at 10AM everyday
 def text_schedule():
