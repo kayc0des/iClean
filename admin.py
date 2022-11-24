@@ -12,7 +12,7 @@ password = 'icleanAPP'
 if admin_email == email and admin_password == password:
     pass
 else:
-    print("Invalide Credentials")
+    print("Invalid Credentials")
     quit()
 
 adminName = input("Enter admin Name: ")
