@@ -48,7 +48,7 @@ def checkUser(useremail, userpassword):
         if result == []:
             print("Error: Credentials Not Found!")
         else:
-            pass
+            print("Success: Logged In")
 
     except Error as e:
         print("Sorry", e)
