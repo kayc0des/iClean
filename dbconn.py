@@ -54,6 +54,7 @@ def checkUser(useremail, userpassword):
         print("Sorry", e)
     finally:
         if conn.is_connected():
+            cursor.close()
             conn.close()
 
 
@@ -76,4 +77,39 @@ def existingUser(useremail):
         print("Sorry", e)
     finally:
         if conn.is_connected():
+            cursor.close()
+            conn.close()
+
+def email_records():
+    try:
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        email_query = """SELECT UserEmail FROM UserTable"""
+        cursor = conn.cursor()
+        cursor.execute(email_query)
+        result = cursor.fetchall()
+        return result
+        
+    except Error as e:
+        print("User Email Query Failed", e)
+
+    finally:
+        if conn.is_connected():
+            cursor.close()
+            conn.close()
+
+def fetch_message():
+    try:
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        message_query = """SELECT Message FROM MessageTable"""
+        cursor = conn.cursor()
+        cursor.execute(message_query)
+        result = cursor.fetchall()
+        return result
+        
+    except Error as e:
+        print("Message Query Failed", e)
+
+    finally:
+        if conn.is_connected():
+            cursor.close()
             conn.close()
