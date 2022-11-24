@@ -57,11 +57,11 @@ def checkUser(useremail, userpassword):
             conn.close()
 
 
-def existingUser(useremail, userpassword):
+def existingUser(useremail):
     try:
         conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
-        search_query = """SELECT * FROM UserTable WHERE UserEmail=%s AND UserPassword=%s"""
-        record = (useremail, userpassword)
+        search_query = """SELECT * FROM UserTable WHERE UserEmail=%s"""
+        record = (useremail,)
         cursor = conn.cursor()
         cursor.execute(search_query, record)
         result = cursor.fetchall()
@@ -70,6 +70,7 @@ def existingUser(useremail, userpassword):
         else:
             print("You already have an account!")
             print("Please Log in")
+            quit()
 
     except Error as e:
         print("Sorry", e)
