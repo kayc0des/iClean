@@ -10,7 +10,12 @@ from dbconn import existingUser
 
 print("iClean App")
 
-sign_log = input("Do you have an account? Yes/No ")
+def start():
+    global sign_log
+    sign_log = input("Do you have an account? Yes/No ")
+
+start()
+
 if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
     global name
     name = input("Enter name: ")
@@ -32,7 +37,7 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
         user_password = maskpass.askpass(prompt="Enter password:", mask="*")
         check(user_email)
         user_details = {'user_email': user_email, 'user_password': user_password}
-        existingUser(user_details['user_email'], user_details['user_password'])
+        existingUser(user_details['user_email'])
 
 
     #collect user info, verify and insert into database
@@ -42,8 +47,8 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
     email_verification(user_details['username'], user_details['user_email'], avcode)
     verification_code = int(input("Enter the verification code sent to you: "))
     if avcode == verification_code:
-        if registerUser(name, user_details['username'], user_details['user_email'], user_details['user_password']):
-            reg_success(user_details['user_email'], user_details['username'])
+        registerUser(name, user_details['username'], user_details['user_email'], user_details['user_password'])
+        reg_success(user_details['user_email'], user_details['username'])
     else:
         print("Invalid Verification Code")
         quit()
