@@ -7,6 +7,10 @@ from dbconn import registerUser
 from dbconn import checkUser
 import maskpass
 from dbconn import existingUser
+from dbconn import email_records
+from dbconn import fetch_message
+import schedule
+import time
 
 print("iClean App")
 
@@ -62,3 +66,16 @@ else:
     #check if entry is present in database
     checkUser(user_details['user_email'], user_details['userpassword'])
 
+#Fetch emails and messages and save them as objects
+email_rec = email_records()
+print(email_rec)
+message_rec = fetch_message()
+print(message_rec)
+
+#automate message to be sent at 10AM everyday
+def text_schedule():
+    #job = schedule.every()day.at(10:00).do()
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
