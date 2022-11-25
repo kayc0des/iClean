@@ -19,3 +19,7 @@ adminName = input("Enter admin Name: ")
 message = input("Enter submission message: ")
 msg_dic = {'adminName': adminName, 'message': message}
 add_message(msg_dic['message'], msg_dic['adminName'])
+
+log_status = int(input("To exit input (0) "))
+if log_status == 0:
+    quit()

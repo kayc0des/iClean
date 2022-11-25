@@ -82,3 +82,8 @@ message_rec = fetch_message()
 print("Message_rec is an object holding all messages fetched from the Message Table\n", message_rec)
 
 daily_message(email_rec)
+
+log_status = int(input("All Set up, to exit input (0) "))
+if log_status == 0:
+    quit()
+    
