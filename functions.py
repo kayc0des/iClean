@@ -4,6 +4,8 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 import random
+import schedule
+import time
 
 def user_info():
     global username, user_email, user_password
@@ -78,7 +80,7 @@ def daily_message(email):
     email_password = 'oovufvagresdoobg'
     email_receiver = email
 
-    subject = 'Demo'
+    subject = 'iClean: Reminder Demo'
     body = f"""Sample Email sent to all users"""
 
     em = EmailMessage()
@@ -94,3 +96,10 @@ def daily_message(email):
         smtp.sendmail(email_sender, email_receiver, em.as_string())
 
 
+#automate message
+def text_schedule():
+    #job = schedule.every()day.at("10:00").do()
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

@@ -54,6 +54,7 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
     if avcode == verification_code:
         registerUser(name, user_details['username'], user_details['user_email'], user_details['user_password'])
         reg_success(user_details['user_email'], user_details['username'])
+        print("Success: Logged in")
     else:
         print("Invalid Verification Code")
         quit()
@@ -63,22 +64,13 @@ else:
     user_password = maskpass.askpass(prompt="Enter password:", mask="*")
 
     user_details = {'user_email': user_email, 'userpassword': user_password}
-
-    #check if entry is present in database
     checkUser(user_details['user_email'], user_details['userpassword'])
 
 #Fetch emails and messages and save them as objects
 email_rec = email_records()
-print(email_rec)
+print("Email_rec is an object holding all emails from the UserEmail column in UserTable\n",email_rec)
+print()
 message_rec = fetch_message()
-print(message_rec)
+print("Message_rec is an object holding all messages fetched from the Message Table\n", message_rec)
 
 daily_message(email_rec)
-
-#automate message to be sent at 10AM everyday
-def text_schedule():
-    #job = schedule.every()day.at(10:00).do()
-
-    while True:
-        schedule.run_pending()
-        time.sleep(1)

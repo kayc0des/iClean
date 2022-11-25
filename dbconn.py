@@ -1,3 +1,4 @@
+#database connector module
 import mysql.connector 
 from mysql.connector import Error
 
