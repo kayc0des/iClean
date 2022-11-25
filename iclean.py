@@ -18,6 +18,9 @@ print("iClean App")
 def start():
     global sign_log
     sign_log = input("Do you have an account? Yes/No ")
+    if sign_log == '':
+        print("Please provide an answer to the prompt")
+        start()
 
 start()
 
@@ -40,6 +43,11 @@ if sign_log == 'NO' or sign_log == 'no' or sign_log == 'No':
         username = input("Enter your username: ")
         user_email = input("Enter email: ")
         user_password = maskpass.askpass(prompt="Enter password:", mask="*")
+        if username == '' or user_email == '' or user_password == '':
+            print("All fields are required")
+            user_info()
+        else :
+            pass
         check(user_email)
         user_details = {'user_email': user_email, 'user_password': user_password}
         existingUser(user_details['user_email'])
