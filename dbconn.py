@@ -4,7 +4,7 @@ from mysql.connector import Error
 
 def registerUser(name, username, useremail, userpassword):
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='')
         user_insert_query = """INSERT INTO UserTable (Name, Username, UserEmail, UserPassword)
                             VALUES
                             (%s, %s, %s, %s) """
