@@ -1,10 +1,13 @@
 #database connector module
+import os
 import mysql.connector 
 from mysql.connector import Error
 
+mysqlpassword = os.getenv('MYSQL_ROOT_PASSWORD', default=None) 
+
 def registerUser(name, username, useremail, userpassword):
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         user_insert_query = """INSERT INTO UserTable (Name, Username, UserEmail, UserPassword)
                             VALUES
                             (%s, %s, %s, %s) """
@@ -23,7 +26,7 @@ def registerUser(name, username, useremail, userpassword):
 
 def add_message(message, admin_name):
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         admin_insert_query = """INSERT INTO MessageTable (Message, adminName) VALUES (%s, %s) """
         record = (message, admin_name)
         cursor = conn.cursor()
@@ -40,7 +43,7 @@ def add_message(message, admin_name):
 
 def checkUser(useremail, userpassword):
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         search_query = """SELECT * FROM UserTable WHERE UserEmail=%s AND UserPassword=%s"""
         record = (useremail, userpassword)
         cursor = conn.cursor()
@@ -61,7 +64,7 @@ def checkUser(useremail, userpassword):
 
 def existingUser(useremail):
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         search_query = """SELECT * FROM UserTable WHERE UserEmail=%s"""
         record = (useremail,)
         cursor = conn.cursor()
@@ -83,7 +86,7 @@ def existingUser(useremail):
 
 def email_records():
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         email_query = """SELECT UserEmail FROM UserTable"""
         cursor = conn.cursor()
         cursor.execute(email_query)
@@ -100,7 +103,7 @@ def email_records():
 
 def fetch_message():
     try:
-        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password='kayc0des')
+        conn = mysql.connector.connect(host='localhost', database='icleandb', user='root', password=mysqlpassword)
         message_query = """SELECT Message FROM MessageTable"""
         cursor = conn.cursor()
         cursor.execute(message_query)
